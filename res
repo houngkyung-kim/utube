@@ -13,13 +13,13 @@
   useChunkedEncodingByDefault: true,
   sendDate: true,
   _removedConnection: false,
-  _removedContLen: false,
-  _removedTE: false,
-  _contentLength: null,
-  _hasBody: true,
+  _removedContLen: true,
+  _removedTE: true,
+  _contentLength: 0,
+  _hasBody: false,
   _trailer: '',
-  finished: false,
-  _headerSent: false,
+  finished: true,
+  _headerSent: true,
   _closed: false,
   socket: <ref *1> Socket {
     connecting: false,
@@ -83,17 +83,17 @@
       length: 0,
       writing: false,
       corked: 0,
-      sync: true,
+      sync: false,
       bufferProcessing: false,
       onwrite: [Function: bound onwrite],
       writecb: null,
       writelen: 0,
-      afterWriteTickInfo: null,
+      afterWriteTickInfo: [Object],
       buffered: [],
       bufferedIndex: 0,
       allBuffers: true,
       allNoop: true,
-      pendingcb: 0,
+      pendingcb: 1,
       constructed: true,
       prefinished: false,
       errorEmitted: false,
@@ -200,7 +200,13 @@
     [Symbol(kBytesWritten)]: 0,
     [Symbol(RequestTimeout)]: undefined
   },
-  _header: null,
+  _header: 'HTTP/1.1 304 Not Modified\r\n' +
+    'X-Powered-By: Express\r\n' +
+    'ETag: W/"c-Lve95gjOVATpfV8EL5X4nxwjKHE"\r\n' +
+    'Date: Wed, 20 Jan 2021 23:50:51 GMT\r\n' +
+    'Connection: keep-alive\r\n' +
+    'Keep-Alive: timeout=5\r\n' +
+    '\r\n',
   _keepAliveTimeout: 5000,
   _onPendingData: [Function: bound updateOutgoingData],
   _sent100: false,
@@ -406,10 +412,13 @@
     [Symbol(RequestTimeout)]: undefined
   },
   locals: [Object: null prototype] {},
+  statusCode: 304,
+  statusMessage: 'Not Modified',
   [Symbol(kCapture)]: false,
   [Symbol(kNeedDrain)]: false,
   [Symbol(corked)]: 0,
   [Symbol(kOutHeaders)]: [Object: null prototype] {
-    'x-powered-by': [ 'X-Powered-By', 'Express' ]
+    'x-powered-by': [ 'X-Powered-By', 'Express' ],
+    etag: [ 'ETag', 'W/"c-Lve95gjOVATpfV8EL5X4nxwjKHE"' ]
   }
 }
