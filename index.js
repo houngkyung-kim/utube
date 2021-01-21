@@ -1,24 +1,28 @@
-const express = require("express");
+import express from "express";
+import helmet from "helmet";
+import morgan from "morgan";
+import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
+
 const app = express();
 
 const port = 3000;
 
-function handleHome(req, res) {
-  res.send("Hello World!");
-  console.log(res);
-  // console.log("----------")
-  // console.log(res)
-}
+const handleHome = (req, res) => res.send("Hello World!");
 
-function handleProfile(req, res) {
-  res.send("You are on my profile");
-}
+const handleProfile = (req, res) => res.send("You are on my profile");
+
+app.use(helmet())
+app.use(morgan("dev"))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}))
+app.use(cookieParser())
 
 app.get("/", handleHome);
 
 app.get("/profile", handleProfile);
 
-function handleListening() {
+const handleListening = () =>
   console.log(`Listening at http://localhost:${port}`);
-}
+
 app.listen(port, handleListening);
